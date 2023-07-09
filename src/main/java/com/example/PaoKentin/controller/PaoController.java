@@ -20,16 +20,19 @@ public class PaoController {
         return "index";
     }
 
+    @GetMapping(value = "/cadastroPao")
+        public String getCadastroPao(Model model) {
+
+        Iterable<Pao> paes = paoService.getPaes();
+        model.addAttribute("paes", paes);
+        return "cadastroPao";
+    }
+
     @PostMapping(value = "/")
     public String createPao(@ModelAttribute("pao")Pao pao, Model model) {
 
         paoService.createPao(pao.getTipoPao(), pao.getDescricao(), pao.getTempoPreparo());
-
-        System.out.println(pao.getDescricao());
-        System.out.println(pao.getTipoPao());
-
-        Iterable<Pao> paes = paoService.getPaes();
-        model.addAttribute("paes", paes);
-        return "index";
+        
+        return "redirect:/cadastroPao";
     }
 }
