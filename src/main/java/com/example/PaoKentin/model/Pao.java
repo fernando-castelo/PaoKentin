@@ -13,7 +13,15 @@ public class Pao {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy=SEQUENCE, generator="ID_SEQ")
-    private  int id;
+    private int id;
+
+
+
+    public Pao(String tipoPao, String descricao, int tempoPreparo) {
+        this.tipoPao = tipoPao;
+        this.descricao = descricao;
+        this.tempoPreparo = tempoPreparo;
+    }
 
     @Column(name = "tipo_pao")
     private String tipoPao;
@@ -22,7 +30,11 @@ public class Pao {
     private String descricao;
 
     @Column(name = "tempo_preparo")
-    private LocalTime tempoPreparo;
+    private int tempoPreparo;
+
+    public Pao() {
+
+    }
 
     public int getId() {
         return id;
@@ -48,11 +60,11 @@ public class Pao {
         this.descricao = descricao;
     }
 
-    public LocalTime getTempoPreparo() {
+    public int getTempoPreparo() {
         return tempoPreparo;
     }
 
-    public void setTempoPreparo(LocalTime tempoPreparo) {
+    public void setTempoPreparo(int tempoPreparo) {
         this.tempoPreparo = tempoPreparo;
     }
 }
