@@ -23,7 +23,58 @@
 
     </form>
 
-<!--    </table>-->
+    <table class="fornada">
+        <tr>
+            <th>Tipo de Pao</th>
+            <th>Tempo de Preparo</th>
+        </tr>
+
+        <tr>
+        <tr th:each="fornada : ${fornadasEmPreparo}">
+            <td th:text="${fornada.getPao().tipoPao}"></td>
+            <td>
+                <span class="tempo-preparo" th:text="${fornada.getTempoRestante()}"></span>
+            </td>
+            <td th:text="${fornada.getInicioFornada()}"></td>
+            <td th:text="${fornada.getFinalFornada()}"></td>
+        </tr>
+    </table>
+
+    <table class="fornada">
+        <tr>
+            <th>Tipo de Pao</th>
+            <th>Tempo de Preparo</th>
+        </tr>
+
+        <tr>
+        <tr th:each="fornada : ${fornadasProntas}">
+            <td th:text="${fornada.getPao().tipoPao}"></td>
+            <td>
+                <span class="prontos" th:text="${'PRONTO'}"></span>
+            </td>
+            <td th:text="${fornada.getInicioFornada()}"></td>
+            <td th:text="${fornada.getFinalFornada()}"></td>
+        </tr>
+    </table>
+
+    <script>
+        const tempoPreparoElements = document.getElementsByClassName('tempo-preparo');
+
+        Array.from(tempoPreparoElements).forEach((element) => {
+            let tempoPreparo = parseInt(element.innerText);
+
+            const countdownInterval = setInterval(() => {
+                tempoPreparo--;
+
+                element.innerText = tempoPreparo;
+
+                if (tempoPreparo <= 0) {
+                    element.innerText = "PRONTO!"
+                    clearInterval(countdownInterval);
+                }
+            }, 60000);
+        });
+    </script>
 
 </body>
 </html>

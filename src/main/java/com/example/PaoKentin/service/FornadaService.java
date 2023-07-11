@@ -45,7 +45,7 @@ public class FornadaService {
         return null;
     }
 
-    public Iterable<Fornada> getFornada() {
+    public Iterable<Fornada> getFornadas() {
         Iterable<Fornada> fornadas = fornadaDao.findAll();
         return fornadas;
     }
