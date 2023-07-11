@@ -3,6 +3,8 @@ package com.example.PaoKentin.model;
 import jakarta.persistence.*;
 
 import java.time.LocalTime;
+import java.util.List;
+import java.util.Set;
 
 import static jakarta.persistence.GenerationType.SEQUENCE;
 
@@ -14,8 +16,6 @@ public class Pao {
     @Column(name = "id")
     @GeneratedValue(strategy=SEQUENCE, generator="ID_SEQ")
     private int id;
-
-
 
     public Pao(String tipoPao, String descricao, int tempoPreparo) {
         this.tipoPao = tipoPao;
@@ -32,8 +32,19 @@ public class Pao {
     @Column(name = "tempo_preparo")
     private int tempoPreparo;
 
+   @OneToMany(mappedBy = "pao", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+   private List<Fornada> fornadas;
+
     public Pao() {
 
+    }
+
+    public List<Fornada> getFornadas() {
+        return fornadas;
+    }
+
+    public void setFornadas(List<Fornada> fornadas) {
+        this.fornadas = fornadas;
     }
 
     public int getId() {

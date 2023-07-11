@@ -39,6 +39,15 @@ public class PaoService {
         }
     }
 
+    public Optional<Pao> getPao(int id)  {
+        if(checkIfPaoIsNull(id)) {
+            return paoDao.findById(id);
+        }
+        return null;
+    }
+
+
+
     public Iterable<Pao> getPaes() {
         Iterable<Pao> paes = paoDao.findAll();
         return paes;

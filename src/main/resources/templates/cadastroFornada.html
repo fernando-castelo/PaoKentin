@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <a th:href="@{/}">Voltar ao menu principal</a>
+
+    <form th:action="@{/registrarFornada}" method="POST" th:object="${fornada}">
+
+        <input type="hidden" th:field="*{id}">
+
+        <div id="inputPao">
+            <label for="paoSelect">Selecione um pao</label>
+            <select th:field="*{pao.id}" name="paoSelect" id="paoSelect">
+                <option th:each="pao : ${listaPaes}" th:value="${pao.getId()}" th:text="${pao.getTipoPao() + ' Tempo de Preparo:  ' + pao.getTempoPreparo()}"></option>
+            </select>
+        </div>
+
+        <button type="submit">Enter</button>
+
+    </form>
+
+<!--    </table>-->
+
+</body>
+</html>
