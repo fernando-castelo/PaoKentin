@@ -3,31 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/cadastroFornada.css}">
 </head>
 <body>
 
-    <a th:href="@{/}">Voltar ao menu principal</a>
+    <div>
+        <a th:href="@{/}">Voltar ao menu principal</a>
 
-    <form th:action="@{/registrarFornada}" method="POST" th:object="${fornada}">
+        <form th:action="@{/registrarFornada}" method="POST" th:object="${fornada}">
 
-        <input type="hidden" th:field="*{id}">
+            <input type="hidden" th:field="*{id}">
 
-        <div id="inputPao">
-            <label for="paoSelect">Selecione um pao</label>
-            <select th:field="*{pao.id}" name="paoSelect" id="paoSelect">
-                <option th:each="pao : ${listaPaes}" th:value="${pao.getId()}" th:text="${pao.getTipoPao() + ' Tempo de Preparo:  ' + pao.getTempoPreparo()}"></option>
-            </select>
-        </div>
+            <div id="inputPao">
+                <label for="paoSelect">Selecione um pao</label>
+                <select th:field="*{pao.id}" name="paoSelect" id="paoSelect">
+                    <option th:each="pao : ${listaPaes}" th:value="${pao.getId()}" th:text="${pao.getTipoPao() + ' Tempo de Preparo:  ' + pao.getTempoPreparo()}"></option>
+                </select>
+            </div>
 
-        <button type="submit">Enter</button>
+            <button type="submit">Enter</button>
 
-    </form>
+        </form>
+    </div>
+
 
     <table class="fornada">
+        <caption>Fornadas em Preparo</caption>
+
+        <thead>
         <tr>
             <th>Tipo de Pao</th>
             <th>Tempo de Preparo</th>
         </tr>
+        </thead>
 
         <tr>
         <tr th:each="fornada : ${fornadasEmPreparo}">
@@ -41,10 +49,14 @@
     </table>
 
     <table class="fornada">
-        <tr>
-            <th>Tipo de Pao</th>
-            <th>Tempo de Preparo</th>
-        </tr>
+        <caption>Fornadas Prontas</caption>
+
+        <thead>
+            <tr>
+                <th>Tipo de Pao</th>
+                <th>Tempo de Preparo</th>
+            </tr>
+        </thead>
 
         <tr>
         <tr th:each="fornada : ${fornadasProntas}">

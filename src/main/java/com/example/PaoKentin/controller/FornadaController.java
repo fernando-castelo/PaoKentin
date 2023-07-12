@@ -88,11 +88,5 @@ public class FornadaController {
         return "redirect:/fornadas";
     }
 
-
-//    @GetMapping(value = "/registrarFornada/{id}")
-//    public String registrarFornada(@PathVariable("id") String id) {
-//
-//        System.out.println("TESTEEEE" + id);
-//        return "redirect:/fornadas";
-//    }
+    
 }
