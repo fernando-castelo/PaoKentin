@@ -38,22 +38,20 @@ public class FornadaController {
 
         LocalTime tempoAtual = LocalTime.now();
         Duration tempoRestante;
-//        LocalTime tempoFinal;
 
         for(Fornada fornada : fornadas) {
-            System.out.println(tempoAtual);
-            System.out.println(fornada.getFinalFornada());
-            tempoRestante = Duration.between(tempoAtual, fornada.getFinalFornada());
 
-            long durationMinutes = (tempoRestante.toMinutes()) + 1;
-            System.out.println("TESTEEEZINHOO " + durationMinutes);
-
-//            System.out.println("Tempo atual " + tempoAtual + ' ' + tempoAtual.isAfter(fornada.getFinalFornada()));
            boolean isAfter =  tempoAtual.isAfter(fornada.getFinalFornada());
            if(isAfter){
                fornadasProntas.add(fornada);
                fornada.setStatus(StatusFornada.PRONTO);
            } else {
+               tempoRestante = Duration.between(tempoAtual, fornada.getFinalFornada());
+
+               System.out.println("DURATION: " + tempoRestante);
+
+               long durationMinutes = (tempoRestante.toMinutes()) + 1;
+               System.out.println("TESTEEEZINHOO " + durationMinutes);
                fornadasEmPreparo.add(fornada);
                fornada.setTempoRestante(durationMinutes);
            }
@@ -88,5 +86,5 @@ public class FornadaController {
         return "redirect:/fornadas";
     }
 
-    
+
 }
