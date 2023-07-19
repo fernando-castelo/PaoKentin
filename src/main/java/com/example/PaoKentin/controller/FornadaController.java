@@ -28,7 +28,16 @@ public class FornadaController {
     private FornadaRepository fornadaRepo;
 
     @GetMapping(value = "fornadas")
-    public String getFornadas(Model model) {
+    public String gerarFornadas(Model model) {
+
+        Iterable<Pao> paes = paoRepo.readAll();
+        model.addAttribute("listaPaes", paes);
+
+        return "cadastroFornada";
+    }
+
+    @GetMapping(value = "listagemFornadas")
+    public String listFornadas(Model model) {
 
         Iterable<Pao> paes = paoRepo.readAll();
         Iterable<Fornada> fornadas = fornadaRepo.readAll();
@@ -47,10 +56,7 @@ public class FornadaController {
            } else {
                tempoRestante = Duration.between(tempoAtual, fornada.getFinalFornada());
 
-               System.out.println("DURATION: " + tempoRestante);
-
                long durationMinutes = (tempoRestante.toMinutes()) + 1;
-               System.out.println("TESTEEEZINHOO " + durationMinutes);
                fornadasEmPreparo.add(fornada);
                fornada.setTempoRestante((int) durationMinutes);
            }
@@ -63,26 +69,29 @@ public class FornadaController {
         model.addAttribute("fornadasEmPreparo", fornadasEmPreparo);
         model.addAttribute("fornada", fornada);
 
-        return "cadastroFornada";
+        return "listagemFornadas";
     }
 
     @PostMapping(value = "registrarFornada")
-    public String registrarFornada(@ModelAttribute("fornada") Fornada fornada) throws SQLException {
+    public String registrarFornada(@RequestParam String id) throws SQLException {
 
-        int idPao = fornada.getPao().getId();
+        int idPao = Integer.parseInt(id);
 
         Pao pao = paoRepo.read(idPao);
+
+        Fornada fornada = new Fornada();
 
         int tempoDePreparo = pao.getTempoPreparo();
         LocalTime tempoInicial = LocalTime.now();
         LocalTime tempoFinal = tempoInicial.plus(Duration.ofMinutes(tempoDePreparo));
 
+        fornada.setPao(pao);
         fornada.setInicioFornada(tempoInicial);
         fornada.setTempoRestante((int) ((Duration.between(tempoInicial, tempoFinal).toMinutes()) + 1));
         fornada.setFinalFornada(tempoFinal);
 
         fornadaRepo.create(fornada);
-        return "redirect:/fornadas";
+        return "redirect:/listagemFornadas";
     }
 
 

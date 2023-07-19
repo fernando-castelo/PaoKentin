@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" th:href="@{/css/cadastroFornada.css}">
+</head>
+<body>
+
+<div>
+  <a th:href="@{/}">Voltar ao menu principal</a>
+
+
+<table class="fornada">
+  <caption>Fornadas em Preparo</caption>
+
+  <thead>
+  <tr>
+    <th>Tipo de Pao</th>
+    <th>Tempo de Preparo</th>
+  </tr>
+  </thead>
+
+  <tr>
+  <tr th:each="fornada : ${fornadasEmPreparo}">
+    <td th:text="${fornada.getPao().tipoPao}"></td>
+    <td>
+      <span class="tempo-preparo" th:text="${fornada.getTempoRestante()}"></span>
+    </td>
+    <td th:text="${fornada.getInicioFornada()}"></td>
+    <td th:text="${fornada.getFinalFornada()}"></td>
+  </tr>
+</table>
+
+<table class="fornada">
+  <caption>Fornadas Prontas</caption>
+
+  <thead>
+  <tr>
+    <th>Tipo de Pao</th>
+    <th>Tempo de Preparo</th>
+  </tr>
+  </thead>
+
+  <tr>
+  <tr th:each="fornada : ${fornadasProntas}">
+    <td th:text="${fornada.getPao().tipoPao}"></td>
+    <td>
+      <span class="prontos" th:text="${'PRONTO'}"></span>
+    </td>
+    <td th:text="${fornada.getInicioFornada()}"></td>
+    <td th:text="${fornada.getFinalFornada()}"></td>
+  </tr>
+</table>
+
+<script>
+  const tempoPreparoElements = document.getElementsByClassName('tempo-preparo');
+
+  Array.from(tempoPreparoElements).forEach((element) => {
+    let tempoPreparo = parseInt(element.innerText);
+
+    const countdownInterval = setInterval(() => {
+      tempoPreparo--;
+
+      element.innerText = tempoPreparo;
+
+      if (tempoPreparo <= 0) {
+        element.innerText = "PRONTO!"
+        clearInterval(countdownInterval);
+      }
+    }, 60000);
+  });
+</script>
+
+</body>
+</html>

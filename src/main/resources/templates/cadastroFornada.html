@@ -9,84 +9,17 @@
 
     <div>
         <a th:href="@{/}">Voltar ao menu principal</a>
+            <div id="container-botoes">
+                <span th:each="pao : ${listaPaes}">
+                     <form th:action="@{/registrarFornada}" method="POST">
 
-        <form th:action="@{/registrarFornada}" method="POST" th:object="${fornada}">
+                         <input type="hidden" name="id" th:value="${pao.getId()}">
 
-            <input type="hidden" th:field="*{id}">
-
-            <div id="inputPao">
-                <label for="paoSelect">Selecione um pao</label>
-                <select th:field="*{pao.id}" name="paoSelect" id="paoSelect">
-                    <option th:each="pao : ${listaPaes}" th:value="${pao.getId()}" th:text="${pao.getTipoPao() + ' Tempo de Preparo:  ' + pao.getTempoPreparo()}"></option>
-                </select>
+                        <button type="submit" th:text="${pao.getTipoPao()}"></button>
+                     </form>
+                </span>
             </div>
-
-            <button type="submit">Enter</button>
-
-        </form>
     </div>
-
-
-    <table class="fornada">
-        <caption>Fornadas em Preparo</caption>
-
-        <thead>
-        <tr>
-            <th>Tipo de Pao</th>
-            <th>Tempo de Preparo</th>
-        </tr>
-        </thead>
-
-        <tr>
-        <tr th:each="fornada : ${fornadasEmPreparo}">
-            <td th:text="${fornada.getPao().tipoPao}"></td>
-            <td>
-                <span class="tempo-preparo" th:text="${fornada.getTempoRestante()}"></span>
-            </td>
-            <td th:text="${fornada.getInicioFornada()}"></td>
-            <td th:text="${fornada.getFinalFornada()}"></td>
-        </tr>
-    </table>
-
-    <table class="fornada">
-        <caption>Fornadas Prontas</caption>
-
-        <thead>
-            <tr>
-                <th>Tipo de Pao</th>
-                <th>Tempo de Preparo</th>
-            </tr>
-        </thead>
-
-        <tr>
-        <tr th:each="fornada : ${fornadasProntas}">
-            <td th:text="${fornada.getPao().tipoPao}"></td>
-            <td>
-                <span class="prontos" th:text="${'PRONTO'}"></span>
-            </td>
-            <td th:text="${fornada.getInicioFornada()}"></td>
-            <td th:text="${fornada.getFinalFornada()}"></td>
-        </tr>
-    </table>
-
-    <script>
-        const tempoPreparoElements = document.getElementsByClassName('tempo-preparo');
-
-        Array.from(tempoPreparoElements).forEach((element) => {
-            let tempoPreparo = parseInt(element.innerText);
-
-            const countdownInterval = setInterval(() => {
-                tempoPreparo--;
-
-                element.innerText = tempoPreparo;
-
-                if (tempoPreparo <= 0) {
-                    element.innerText = "PRONTO!"
-                    clearInterval(countdownInterval);
-                }
-            }, 60000);
-        });
-    </script>
 
 </body>
 </html>
