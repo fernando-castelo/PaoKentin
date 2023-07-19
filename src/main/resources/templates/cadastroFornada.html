@@ -4,22 +4,28 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" th:href="@{/css/cadastroFornada.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div>
-        <a th:href="@{/}">Voltar ao menu principal</a>
-            <div id="container-botoes">
-                <span th:each="pao : ${listaPaes}">
-                     <form th:action="@{/registrarFornada}" method="POST">
 
-                         <input type="hidden" name="id" th:value="${pao.getId()}">
+        <a class="botao-voltar" th:href="@{/}">Voltar ao menu principal</a>
 
-                        <button type="submit" th:text="${pao.getTipoPao()}"></button>
-                     </form>
-                </span>
+        <h1>Selecione um pao para iniciar uma fornada: </h1>
+
+        <div id="container-botoes">
+            <div th:each="pao : ${listaPaes}">
+                <form th:action="@{/registrarFornada}" method="POST">
+
+                    <input type="hidden" name="id" th:value="${pao.getId()}">
+
+                    <button class="fornada-button" type="submit" th:text="${pao.getTipoPao()}"></button>
+                </form>
             </div>
-    </div>
+        </div>>
+
 
 </body>
 </html>

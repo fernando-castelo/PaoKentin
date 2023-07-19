@@ -83,12 +83,15 @@ public class FornadaController {
 
         int tempoDePreparo = pao.getTempoPreparo();
         LocalTime tempoInicial = LocalTime.now();
+        var tempoInicial1 = LocalTime.of(tempoInicial.getHour(), tempoInicial.getMinute());
+
         LocalTime tempoFinal = tempoInicial.plus(Duration.ofMinutes(tempoDePreparo));
+        var tempoFinal1 = LocalTime.of(tempoFinal.getHour(), tempoFinal.getMinute());
 
         fornada.setPao(pao);
-        fornada.setInicioFornada(tempoInicial);
-        fornada.setTempoRestante((int) ((Duration.between(tempoInicial, tempoFinal).toMinutes()) + 1));
-        fornada.setFinalFornada(tempoFinal);
+        fornada.setInicioFornada(tempoInicial1);
+        fornada.setTempoRestante((int) ((Duration.between(tempoInicial1, tempoFinal1).toMinutes()) + 1));
+        fornada.setFinalFornada(tempoFinal1);
 
         fornadaRepo.create(fornada);
         return "redirect:/listagemFornadas";

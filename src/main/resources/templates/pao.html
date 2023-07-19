@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/cadastroPao.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <a th:href="@{/cadastroPao}">Voltar a lista de paes</a>
+    <a class="botao-voltar" th:href="@{/cadastroPao}">Voltar a lista de paes</a>
 
-  <form action="#" th:action="@{/atualizarPao}" th:object="${pao}" method="POST">
+  <form id="container" action="#" th:action="@{/atualizarPao}" th:object="${pao}" method="POST">
 
     <div id="container-inputs">
 
@@ -30,8 +34,7 @@
         </div>
 
         <button type="submit">Enter</button>
-
-        <div>
+    </div>
 
   </form>
 </body>
