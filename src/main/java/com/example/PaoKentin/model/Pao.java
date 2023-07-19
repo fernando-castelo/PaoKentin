@@ -21,18 +21,9 @@ public class Pao {
     private int tempoPreparo;
 
 
-   private List<Fornada> fornadas;
 
     public Pao() {
 
-    }
-
-    public List<Fornada> getFornadas() {
-        return fornadas;
-    }
-
-    public void setFornadas(List<Fornada> fornadas) {
-        this.fornadas = fornadas;
     }
 
     public int getId() {

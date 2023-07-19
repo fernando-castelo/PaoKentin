@@ -5,10 +5,7 @@ import com.example.PaoKentin.repository.PaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
 
@@ -42,6 +39,23 @@ public class PaoController {
 
         return "redirect:/cadastroPao";
     }
+
+    @GetMapping(value = "alterarPao")
+    public String alterarPao(@RequestParam String id, Model model) {
+        Pao pao = paoRepo.read(Integer.parseInt(id));
+
+        System.out.println("TESTEE : " + pao.getTipoPao() + " " + pao.getDescricao());
+        model.addAttribute("pao", pao);
+        return "pao";
+    }
+
+    @PostMapping(value = "atualizarPao")
+    public String atualizarPao(@ModelAttribute("pao") Pao pao) {
+
+        paoRepo.update(pao);
+        return "redirect:/cadastroPao";
+    }
+
 
 
 }

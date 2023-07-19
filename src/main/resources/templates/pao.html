@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <a th:href="@{/cadastroPao}">Voltar a lista de paes</a>
+
+  <form action="#" th:action="@{/atualizarPao}" th:object="${pao}" method="POST">
+
+    <div id="container-inputs">
+
+        <input type="hidden" th:field="*{id}">
+
+      <div>
+          <label for="tipo_pao">Tipo de Pao: </label>
+          <input type="text" th:field="*{tipoPao}" id="tipo_pao">
+      </div>
+
+        <div>
+            <label for="descricao">Descricao: </label>
+            <input type="text" th:field="*{descricao}" id="descricao">
+        </div>
+
+        <div>
+            <label for="tempoPreparo">Tempo Preparo:  </label>
+            <input type="number" min="1" max="60" th:field="*{tempoPreparo}" id="tempoPreparo">
+        </div>
+
+        <button type="submit">Enter</button>
+
+        <div>
+
+  </form>
+</body>
+</html>

@@ -38,6 +38,7 @@
       <th>Nome</th>
       <th>Descricao</th>
       <th>Tempo de Preparo</th>
+      <th>Acoes</th>
     </tr>
     </thead>
 
@@ -46,6 +47,9 @@
       <td th:text="${pao.tipoPao}"></td>
       <td th:text="${pao.descricao}"></td>
       <td th:text="${pao.tempoPreparo}"></td>
+      <td>
+        <a th:href="@{/alterarPao(id=${pao.id})}"><button>Atualizar</button></a>
+      </td>
     </tr>
     </tr>
 
