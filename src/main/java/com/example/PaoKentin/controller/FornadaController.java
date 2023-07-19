@@ -2,7 +2,6 @@ package com.example.PaoKentin.controller;
 
 import com.example.PaoKentin.model.Fornada;
 import com.example.PaoKentin.model.Pao;
-import com.example.PaoKentin.model.StatusFornada;
 import com.example.PaoKentin.service.FornadaService;
 import com.example.PaoKentin.service.PaoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.time.Duration;
@@ -41,10 +39,9 @@ public class FornadaController {
 
         for(Fornada fornada : fornadas) {
 
-           boolean isAfter =  tempoAtual.isAfter(fornada.getFinalFornada());
+           boolean isAfter = tempoAtual.isAfter(fornada.getFinalFornada());
            if(isAfter){
                fornadasProntas.add(fornada);
-               fornada.setStatus(StatusFornada.PRONTO);
            } else {
                tempoRestante = Duration.between(tempoAtual, fornada.getFinalFornada());
 
@@ -77,8 +74,8 @@ public class FornadaController {
         int tempoDePreparo = pao.getTempoPreparo();
         LocalTime tempoInicial = LocalTime.now();
         LocalTime tempoFinal = tempoInicial.plus(Duration.ofMinutes(tempoDePreparo));
-        fornada.setInicioFornada(tempoInicial);
 
+        fornada.setInicioFornada(tempoInicial);
         fornada.setTempoRestante((Duration.between(tempoInicial, tempoFinal).toMinutes()) + 1);
         fornada.setFinalFornada(tempoFinal);
 

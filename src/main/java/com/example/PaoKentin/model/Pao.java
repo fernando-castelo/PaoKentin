@@ -8,13 +8,9 @@ import java.util.Set;
 
 import static jakarta.persistence.GenerationType.SEQUENCE;
 
-@Entity
-@Table(name = "pao")
+
 public class Pao {
 
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy=SEQUENCE, generator="ID_SEQ")
     private int id;
 
     public Pao(String tipoPao, String descricao, int tempoPreparo) {
@@ -23,16 +19,15 @@ public class Pao {
         this.tempoPreparo = tempoPreparo;
     }
 
-    @Column(name = "tipo_pao")
+
     private String tipoPao;
 
-    @Column(name = "descricao")
+
     private String descricao;
 
-    @Column(name = "tempo_preparo")
     private int tempoPreparo;
 
-   @OneToMany(mappedBy = "pao", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+
    private List<Fornada> fornadas;
 
     public Pao() {
