@@ -1,6 +1,7 @@
 package com.example.PaoKentin.repository;
 
 import com.example.PaoKentin.model.Pao;
+import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class PaoRepository {
 
 
@@ -18,7 +20,7 @@ public class PaoRepository {
     public void create(Pao p) throws SQLException {
 
         String sql = "insert into pao(tipo_pao,descricao,tempo_preparo) values(?,?,?)";
-
+//
         PreparedStatement pstm = ConnectioManager.getCurrentConnection().prepareStatement(sql);
 
         pstm.setString(1, p.getTipoPao());

@@ -13,13 +13,6 @@ public class Pao {
 
     private int id;
 
-    public Pao(String tipoPao, String descricao, int tempoPreparo) {
-        this.tipoPao = tipoPao;
-        this.descricao = descricao;
-        this.tempoPreparo = tempoPreparo;
-    }
-
-
     private String tipoPao;
 
 
