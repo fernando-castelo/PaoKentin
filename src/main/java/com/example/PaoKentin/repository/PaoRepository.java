@@ -73,6 +73,9 @@ public class PaoRepository {
                 nPao.setDescricao(result.getString("descricao"));
                 nPao.setTempoPreparo(result.getInt("tempo_preparo"));
             }
+
+            return nPao;
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -112,6 +115,7 @@ public class PaoRepository {
 
             while (result.next()) {
                 nPao = new Pao();;
+                nPao.setId(result.getInt("id"));
                 nPao.setTipoPao(result.getString("tipo_pao"));
                 nPao.setDescricao(result.getString("descricao"));
                 nPao.setTempoPreparo(result.getInt("tempo_preparo"));

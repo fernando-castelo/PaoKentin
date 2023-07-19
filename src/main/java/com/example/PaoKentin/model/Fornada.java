@@ -22,13 +22,13 @@ public class Fornada {
 
    private LocalTime finalFornada;
 
-   private Long tempoRestante;
+   private int tempoRestante;
 
-    public Long getTempoRestante() {
+    public int getTempoRestante() {
         return tempoRestante;
     }
 
-    public void setTempoRestante(Long tempoRestante) {
+    public void setTempoRestante(int tempoRestante) {
         this.tempoRestante = tempoRestante;
     }
 
