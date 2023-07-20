@@ -13,10 +13,8 @@ import static jakarta.persistence.GenerationType.SEQUENCE;
 public class Fornada {
 
     private int id;
-
-
+    
    private Pao pao;
-
 
    private LocalTime inicioFornada;
 

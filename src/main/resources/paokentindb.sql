@@ -1,3 +1,7 @@
+CREATE SCHEMA paokentin;
+
+USE paokentin;
+
 CREATE TABLE Pao (
                      id INT PRIMARY KEY,
                      tipo_pao VARCHAR(255),

@@ -44,7 +44,6 @@ public class PaoController {
     public String alterarPao(@RequestParam String id, Model model) {
         Pao pao = paoRepo.read(Integer.parseInt(id));
 
-        System.out.println("TESTEE : " + pao.getTipoPao() + " " + pao.getDescricao());
         model.addAttribute("pao", pao);
         return "pao";
     }

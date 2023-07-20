@@ -15,11 +15,9 @@ public class Pao {
 
     private String tipoPao;
 
-
     private String descricao;
 
     private int tempoPreparo;
-
 
 
     public Pao() {

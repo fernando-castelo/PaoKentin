@@ -82,6 +82,7 @@ public class FornadaController {
         Fornada fornada = new Fornada();
 
         int tempoDePreparo = pao.getTempoPreparo();
+        
         LocalTime tempoInicial = LocalTime.now();
         var tempoInicial1 = LocalTime.of(tempoInicial.getHour(), tempoInicial.getMinute());
 
